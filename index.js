@@ -8,14 +8,13 @@ function getDogImage(dogBreedInput) {
          console.log ("response sent");
          return response.json();
       }
-      throw new Error ()
+      throw 'Breed not found'
     })
-      // .then (response => response.json())
+      
       .then(responseJson => displayResults(responseJson))
-      .catch(Error)
-        {(alert('Not a recognized breed. Please try again'))}
+      .catch(err)
+        {(alert(err))}
 };
-
 
 function displayResults(responseJson) {
     console.log(responseJson);
