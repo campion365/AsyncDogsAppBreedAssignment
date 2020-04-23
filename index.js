@@ -3,12 +3,18 @@
 
 function getDogImage(dogBreedInput) {
   fetch('https://dog.ceo/api/breed/' + dogBreedInput + '/images/random')
-    .then(response => response.json())
-    .then(responseJson => 
-      displayResults(responseJson))
-    .catch(error => alert('Not a recognized breed. Please try again'));
-}
-
+    .then(response => {
+      if (response.ok)  {
+         console.log ("response sent");
+         return response.json();
+      }
+      throw new Error ()
+    })
+      // .then (response => response.json())
+      .then(responseJson => displayResults(responseJson))
+      .catch(Error)
+        {(alert('Not a recognized breed. Please try again'))}
+};
 
 
 function displayResults(responseJson) {
@@ -17,11 +23,6 @@ function displayResults(responseJson) {
       $('.api-results').append(`<img src="${responseJson.message}">`);
 
   }
-
-
-
-
-
 
 
 function watchForm() {
